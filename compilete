@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# Usage: compilete [name of .te in current directory without .te file extension]
+# Usage: compilete [name of .te file in current directory]
 #
-checkmodule -M -m -o $1.mod $1.te
-semodule_package -o $1.pp -m $1.mod
+cleanName=$(echo $1 | sed s/\.te//g)
+checkmodule -M -m -o $cleanName.mod $1
+semodule_package -o $cleanName.pp -m $cleanName.mod
