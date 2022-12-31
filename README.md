@@ -12,3 +12,9 @@ compilete will take a filename as the first argument and attempt to compile any 
 This saves a ton of time from looking at the `audit2allow` man page to find the checkmodule and semodule_package syntax for manual compilation, as well as having to type those commands out. 
 
 Place in `/usr/bin/compilete` for best usage.
+
+# domtrans_example.txt
+When making custom SELinux policies, I ran into an issue where a custom SELinux policy was launching under context of the parent process and was not properly transitioning. When checking the AVC denials in the audit log, you will see the parent process requesting "execute_no_trans" on the custom type
+you created.
+
+This example shows what you need to add to your .te file before you compile it to force the transition to the proper policy.
