@@ -2,6 +2,6 @@
 #
 # Usage: compilete [name of .te file in current directory]
 #
-cleanName=$(echo $1 | sed s/\.te//g)
+cleanName="${1%.te}"
 checkmodule -M -m -o $cleanName.mod $1
 semodule_package -o $cleanName.pp -m $cleanName.mod
